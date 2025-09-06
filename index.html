@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>바이브 코딩으로 수학 수업 혁신하기</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            padding: 40px 0;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+
+        .vibe-definition {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .vibe-definition h2 {
+            color: #fff;
+            margin-bottom: 20px;
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        .definition-box {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+
+        .steps-section {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .steps-section h2 {
+            color: #fff;
+            margin-bottom: 25px;
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .step-card {
+            background: rgba(255,255,255,0.9);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .step-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .step-number {
+            background: #667eea;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .examples-section {
+            background: rgba(255,255,255,0.95);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        }
+
+        .examples-section h2 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .project-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: white;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        }
+
+        .project-header {
+            padding: 20px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .project-status {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .success {
+            background: #4caf50;
+            color: white;
+        }
+
+        .partial {
+            background: #ff9800;
+            color: white;
+        }
+
+        .failed {
+            background: #f44336;
+            color: white;
+        }
+
+        .project-content {
+            padding: 20px;
+        }
+
+        .features {
+            margin: 15px 0;
+        }
+
+        .features li {
+            margin: 8px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .features li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #4caf50;
+            font-weight: bold;
+        }
+
+        .project-link {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .project-link:hover {
+            background: #5a67d8;
+        }
+
+        .issues {
+            background: #ffebee;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border-left: 4px solid #f44336;
+        }
+
+        .issues h4 {
+            color: #c62828;
+            margin-bottom: 10px;
+        }
+
+        .footer {
+            text-align: center;
+            color: white;
+            padding: 40px 0;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .project-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1><i class="fas fa-code"></i> 바이브 코딩으로 수학 수업 혁신하기</h1>
+            <p class="subtitle">Claude AI와 GitHub를 활용한 교육 도구 개발</p>
+            <p>교사 연수 프로그램</p>
+        </header>
+
+        <section class="vibe-definition">
+            <h2><i class="fas fa-lightbulb"></i> 바이브 코딩이란?</h2>
+            <div class="definition-box">
+                AI와 협업하여 코딩 없이도 아이디어를 바로 웹앱으로 구현하는 직관적 개발 방식
+            </div>
+        </section>
+
+        <section class="steps-section">
+            <h2><i class="fas fa-rocket"></i> Claude → GitHub → 웹페이지 생성 과정</h2>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>아이디어 구상</h3>
+                    <p>수업에 필요한 도구나 활동을 구체적으로 설명합니다. "~한 기능이 있는 웹페이지를 만들고 싶어"</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>Claude와 대화</h3>
+                    <p>Claude에게 요구사항을 자세히 설명하고, 생성된 HTML 코드를 복사합니다.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>GitHub 업로드</h3>
+                    <p>GitHub에 새 저장소를 만들고, index.html 파일로 코드를 업로드합니다.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h3>웹페이지 발행</h3>
+                    <p>GitHub Pages를 활성화하면 즉시 웹페이지가 생성됩니다. 학생들과 공유 가능!</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="examples-section">
+            <h2><i class="fas fa-star"></i> 실제 개발 성공 사례들</h2>
+            
+            <div class="project-grid">
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-title">이차함수 표준형 변환기</div>
+                        <span class="project-status success">완전 성공</span>
+                    </div>
+                    <div class="project-content">
+                        <ul class="features">
+                            <li>Gemini API로 무제한 문제 생성</li>
+                            <li>정수 계수만 사용</li>
+                            <li>단계별 풀이 과정 이미지 제공</li>
+                            <li>패들렛 연동으로 작품 공유</li>
+                        </ul>
+                        <a href="https://easypie65.github.io/ff_master/" class="project-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> 프로젝트 보기
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-title">이차함수 계수 탐구</div>
+                        <span class="project-status success">완전 성공</span>
+                    </div>
+                    <div class="project-content">
+                        <ul class="features">
+                            <li>a, b, c 계수별 탭 구성</li>
+                            <li>GeoGebra 앱 전체 화면 지원</li>
+                            <li>탐구 완료 후 정리본 자동 생성</li>
+                            <li>팅커벨 보드 연동</li>
+                        </ul>
+                        <a href="https://easypie65.github.io/f_yeoju3/" class="project-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> 프로젝트 보기
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-title">삼각비 축구 시야각</div>
+                        <span class="project-status success">완전 성공</span>
+                    </div>
+                    <div class="project-content">
+                        <ul class="features">
+                            <li>단계별 탐구 과정</li>
+                            <li>삼각형 하이라이트 표시</li>
+                            <li>각도 변화에 따른 실시간 시야각 계산</li>
+                            <li>직관적인 시각화</li>
+                        </ul>
+                        <a href="https://easypie65.github.io/yjfc/" class="project-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> 프로젝트 보기
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-title">3학년 수업활동 공개</div>
+                        <span class="project-status success">완전 성공</span>
+                    </div>
+                    <div class="project-content">
+                        <ul class="features">
+                            <li>메인 앨범 클릭으로 활동 보기</li>
+                            <li>영상과 사진첩 구성</li>
+                            <li>소개 글 수정 가능</li>
+                            <li>깔끔한 갤러리 형태</li>
+                        </ul>
+                        <a href="https://easypie65.github.io/2025history/" class="project-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> 프로젝트 보기
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-title">이차함수 수업 안내</div>
+                        <span class="project-status success">완전 성공</span>
+                    </div>
+                    <div class="project-content">
+                        <ul class="features">
+                            <li>GitHub에서 코드 수정 없이 웹페이지 생성</li>
+                            <li>수업 안내 페이지 구성</li>
+                            <li>깔끔한 수업 정보 제공</li>
+                            <li>학생들이 쉽게 접근 가능</li>
+                        </ul>
+                        <a href="https://easypie65.github.io/easymath_function/" class="project-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> 프로젝트 보기
+                        </a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-title">칭찬 스티커판</div>
+                        <span class="project-status partial">부분 성공</span>
+                    </div>
+                    <div class="project-content">
+                        <ul class="features">
+                            <li>반별 칭찬스티커판</li>
+                            <li>1등 반, 1등 학생 선정</li>
+                            <li>메모 기능 (+1, -1 버튼)</li>
+                            <li>누가기록 시스템</li>
+                        </ul>
+                        <a href="https://easypie65.github.io/praise/" class="project-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> 프로젝트 보기
+                        </a>
+                        <div class="issues">
+                            <h4><i class="fas fa-exclamation-triangle"></i> 아쉬운 점</h4>
+                            <p>재접속 시 데이터 보존 실패 (자동저장 기능 구현 안됨)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-title">예의 범절 설문지</div>
+                        <span class="project-status failed">제한적 성공</span>
+                    </div>
+                    <div class="project-content">
+                        <ul class="features">
+                            <li>예의범절 문항 설문지</li>
+                            <li>로그인/로그아웃 기능</li>
+                            <li>선생님용 비밀번호 관리</li>
+                            <li>설문 결과 조회</li>
+                        </ul>
+                        <a href="https://easypie65.github.io/school_attitude/" class="project-link" target="_blank">
+                            <i class="fas fa-external-link-alt"></i> 프로젝트 보기
+                        </a>
+                        <div class="issues">
+                            <h4><i class="fas fa-exclamation-triangle"></i> 한계점</h4>
+                            <p>같은 기기에서만 데이터 조회 가능 (서버 없는 환경의 한계)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p><i class="fas fa-heart"></i> 바이브 코딩으로 더 나은 수학 수업을 만들어요!</p>
+            <p>질문이 있으시면 언제든 문의해 주세요.</p>
+        </footer>
+    </div>
+
+    <script>
+        // 부드러운 스크롤 효과
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // 카드 호버 효과 강화
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // 스크롤 애니메이션
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.project-card, .step-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
